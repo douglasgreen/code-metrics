@@ -1,5 +1,5 @@
 {
-    "name": "douglasgreen/check-metrics",
+    "name": "douglasgreen/code-metrics",
     "description": "Code metrics for PHP using PDepend",
     "license": "MIT",
     "type": "library",
