@@ -26,17 +26,18 @@
     ],
     "require": {
         "php": ">=8.1",
-        "pdepend/pdepend": "^2.16.2"
+        "douglasgreen/utility": "^0.5",
+        "pdepend/pdepend": "^2.16"
     },
     "require-dev": {
         "douglasgreen/config-setup": "dev-main",
-        "phpstan/phpstan": "^1.11.9",
-        "rector/rector": "^1.2.2",
-        "symplify/easy-coding-standard": "^12.3.4"
+        "phpstan/phpstan": "^1.11",
+        "rector/rector": "^1.2",
+        "symplify/easy-coding-standard": "^12.3"
     },
     "autoload": {
         "psr-4": {
-            "DouglasGreen\\PhpLinter\\": "src/"
+            "DouglasGreen\\CodeMetrics\\": "src/"
         }
     },
     "minimum-stability": "dev",
@@ -52,7 +53,7 @@
     },
     "scripts": {
         "lint": [
-            "check-metrics",
+            "code-metrics",
             "ecs",
             "phpstan analyse",
             "rector --dry-run"
@@ -65,7 +66,6 @@
         "post-update-cmd": "config-setup"
     },
     "bin": [
-        "bin/check-metrics",
-        "bin/generate-metrics"
+        "bin/code-metrics"
     ]
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DouglasGreen\PhpLinter;
+namespace DouglasGreen\CodeMetrics;
 
 /**
  * Hold an array of issues.

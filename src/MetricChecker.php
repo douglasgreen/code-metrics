@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DouglasGreen\PhpLinter\Pdepend;
+namespace DouglasGreen\CodeMetrics;
 
 /**
  * @see https://pdepend.org/documentation/software-metrics/index.html

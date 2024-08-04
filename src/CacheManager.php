@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DouglasGreen\PhpLinter;
+namespace DouglasGreen\CodeMetrics;
 
 use DouglasGreen\Utility\FileSystem\DirUtil;
 use DouglasGreen\Utility\FileSystem\PathUtil;

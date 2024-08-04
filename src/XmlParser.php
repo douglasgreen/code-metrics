@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace DouglasGreen\PhpLinter\Pdepend;
+namespace DouglasGreen\CodeMetrics;
 
-use SimpleXMLElement;
 use DouglasGreen\Utility\FileSystem\FileException;
+use SimpleXMLElement;
 
 /**
  * @see https://pdepend.org/documentation/software-metrics/index.html
