@@ -55,6 +55,7 @@
     "scripts": {
         "lint": [
             "code_metrics.php",
+            "detect-collisions",
             "ecs",
             "phpstan analyse",
             "rector --dry-run"
