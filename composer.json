@@ -30,7 +30,6 @@
         "pdepend/pdepend": "^2.16"
     },
     "require-dev": {
-        "douglasgreen/config-setup": "dev-main",
         "phpstan/phpstan": "^2.1",
         "rector/rector": "^2.0",
         "shipmonk/name-collision-detector": "^2.1",
@@ -41,14 +40,6 @@
             "DouglasGreen\\CodeMetrics\\": "src/"
         }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/douglasgreen/config-setup"
-        }
-    ],
     "config": {
         "sort-packages": true
     },
@@ -63,9 +54,7 @@
         "lint:fix": [
             "ecs --fix",
             "rector"
-        ],
-        "post-install-cmd": "config_setup.php",
-        "post-update-cmd": "config_setup.php"
+        ]
     },
     "bin": [
         "bin/code_metrics.php"
