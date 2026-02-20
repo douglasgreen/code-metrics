@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace DouglasGreen\CodeMetrics;
 
-use DouglasGreen\Utility\FileSystem\DirUtil;
-use DouglasGreen\Utility\FileSystem\PathUtil;
-
 class CacheManager
 {
     public const CACHE_DIR = 'var/cache/pdepend';
@@ -24,20 +21,25 @@ class CacheManager
     public function __construct(
         protected readonly string $currentDir,
     ) {
-        $this->cacheDir = PathUtil::addSubpath($currentDir, self::CACHE_DIR);
-        $this->fileCacheDir = PathUtil::addSubpath($currentDir, self::FILE_CACHE_DIR);
-        $this->summaryFile = PathUtil::addSubpath($currentDir, self::SUMMARY_FILE);
+        $this->cacheDir = $currentDir . DIRECTORY_SEPARATOR . self::CACHE_DIR;
+        $this->fileCacheDir = $currentDir . DIRECTORY_SEPARATOR . self::FILE_CACHE_DIR;
+        $this->summaryFile = $currentDir . DIRECTORY_SEPARATOR . self::SUMMARY_FILE;
 
         // Ensure the cache directory exists
         if (! is_dir($this->cacheDir)) {
-            DirUtil::makeRecursive($this->cacheDir);
+            mkdir($this->cacheDir, 0777, true);
         }
 
         // Ensure the file cache directory exists and is clear.
         if (is_dir($this->fileCacheDir)) {
-            DirUtil::removeContents($this->fileCacheDir);
+            $files = glob($this->fileCacheDir . '/*');
+            foreach ($files as $file) {
+                if (is_file($file)) {
+                    unlink($file);
+                }
+            }
         } else {
-            DirUtil::make($this->fileCacheDir);
+            mkdir($this->fileCacheDir, 0777, true);
         }
     }
 
@@ -73,11 +75,11 @@ class CacheManager
 
         // Ensure the directory exists
         if (! is_dir($newFileDir)) {
-            DirUtil::makeRecursive($newFileDir);
+            mkdir($newFileDir, 0777, true);
         }
 
         // Copy the file
-        PathUtil::copy($file, $newFilePath);
+        copy($file, $newFilePath);
     }
 
     public function getCacheDir(): string
