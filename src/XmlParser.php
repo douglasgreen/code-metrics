@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DouglasGreen\CodeMetrics;
 
-use DouglasGreen\Utility\FileSystem\FileException;
+use RuntimeException;
 use SimpleXMLElement;
 
 /**
@@ -16,22 +16,22 @@ class XmlParser
     protected readonly array $data;
 
     /**
-     * @throws FileException
+     * @throws RuntimeException
      */
     public function __construct(
         protected readonly string $xmlFile,
     ) {
         $xml = simplexml_load_file($this->xmlFile);
         if ($xml === false) {
-            throw new FileException('Unable to load XML file');
+            throw new RuntimeException('Unable to load XML file');
         }
 
         if ($xml->files === null) {
-            throw new FileException('No files found');
+            throw new RuntimeException('No files found');
         }
 
         if ($xml->package === null) {
-            throw new FileException('No package found');
+            throw new RuntimeException('No package found');
         }
 
         $data = [];
