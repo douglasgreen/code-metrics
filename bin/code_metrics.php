@@ -60,7 +60,7 @@ try {
     foreach ($packages as $package) {
         $classes = $package['classes'];
         foreach ($classes as $class) {
-            $filename = CacheManager::getOriginalFile(str_replace($currentDir . DIRECTORY_SET_SEPARATOR, '', $class['filename']));
+            $filename = CacheManager::getOriginalFile(str_replace($currentDir . DIRECTORY_SEPARATOR, '', $class['filename']));
             if ($ignoreList->shouldIgnore($filename)) {
                 continue;
             }
@@ -147,7 +147,8 @@ try {
             continue;
         }
 
-        $totalLoc = count(file($phpFile));
+        $lines = file($phpFile);
+        $totalLoc = $lines !== false ? count($lines) : 0;
 
         // Other LOC is outside classes and functions
         $otherLoc = $totalLoc - $locChecked;

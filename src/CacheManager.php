@@ -33,9 +33,11 @@ class CacheManager
         // Ensure the file cache directory exists and is clear.
         if (is_dir($this->fileCacheDir)) {
             $files = glob($this->fileCacheDir . '/*');
-            foreach ($files as $file) {
-                if (is_file($file)) {
-                    unlink($file);
+            if (is_array($files)) {
+                foreach ($files as $file) {
+                    if (is_file($file)) {
+                        unlink($file);
+                    }
                 }
             }
         } else {
