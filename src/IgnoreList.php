@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace DouglasGreen\CodeMetrics;
 
-use DouglasGreen\Utility\FileSystem\PathUtil;
-use DouglasGreen\Utility\Regex\Regex;
-
 class IgnoreList
 {
     public const IGNORE_FILE = '.phplintignore';
@@ -16,14 +13,14 @@ class IgnoreList
 
     public function __construct(string $currentDir)
     {
-        $ignoreFile = PathUtil::addSubpath($currentDir, self::IGNORE_FILE);
+        $ignoreFile = $currentDir . DIRECTORY_SEPARATOR . self::IGNORE_FILE;
         $this->ignorePatterns = $this->loadIgnoreFile($ignoreFile);
     }
 
     public function shouldIgnore(string $filePath): bool
     {
         foreach ($this->ignorePatterns as $ignorePattern) {
-            if (Regex::hasMatch($ignorePattern, $filePath)) {
+            if (preg_match($ignorePattern, $filePath) === 1) {
                 return true;
             }
         }
@@ -49,7 +46,11 @@ class IgnoreList
             return [];
         }
 
-        $lines = PathUtil::loadLines($ignoreFile);
+        $lines = file($ignoreFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        if ($lines === false) {
+            return [];
+        }
+
         $patterns = [];
         foreach ($lines as $line) {
             $line = trim($line);
