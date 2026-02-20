@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace DouglasGreen\CodeMetrics;
 
-use DouglasGreen\Utility\FileSystem\PathUtil;
-use DouglasGreen\Utility\Program\Command;
 use Exception;
 
 class Repository
@@ -22,8 +20,16 @@ class Repository
 
     public function __construct()
     {
-        $command = new Command('git ls-files');
-        $this->files = $command->run();
+        $output = [];
+        $returnVar = 0;
+        exec('git ls-files', $output, $returnVar);
+
+        if ($returnVar !== 0) {
+            throw new Exception(
+                "Failed to execute Git command. Make sure Git is installed and you're in a Git repository.",
+            );
+        }
+        $this->files = $output;
 
         // Command to get the default branch
         $command = "git remote show origin | sed -n '/HEAD branch/s/.*: //p'";
@@ -61,7 +67,7 @@ class Repository
     {
         $matches = [];
         foreach ($this->files as $file) {
-            if (PathUtil::getFileType($file) === 'php') {
+            if (pathinfo($file, PATHINFO_EXTENSION) === 'php') {
                 $matches[] = $file;
             }
         }
