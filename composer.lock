@@ -4,71 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "641d697fdb8c459585cb8739a19debc0",
+    "content-hash": "c621998aa60e9646c84707f3f50be990",
     "packages": [
-        {
-            "name": "douglasgreen/utility",
-            "version": "v0.5.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/douglasgreen/utility.git",
-                "reference": "a3397b59ac24aeb71cf8ae1d1f989f5660e988e6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/douglasgreen/utility/zipball/a3397b59ac24aeb71cf8ae1d1f989f5660e988e6",
-                "reference": "a3397b59ac24aeb71cf8ae1d1f989f5660e988e6",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=8.1"
-            },
-            "require-dev": {
-                "douglasgreen/config-setup": "dev-main",
-                "php-mock/php-mock": "^2.5",
-                "phpstan/phpstan": "^1.11.9",
-                "phpunit/phpunit": "^10.5.29",
-                "rector/rector": "^1.2.2",
-                "symplify/easy-coding-standard": "^12.3.4"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "DouglasGreen\\Utility\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Douglas Green",
-                    "email": "douglas@nurd.site",
-                    "homepage": "https://nurd.site/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "PHP utility project for exception classes and wrapper functions",
-            "homepage": "https://github.com/douglasgreen/utility",
-            "keywords": [
-                "code quality",
-                "coding standards",
-                "exceptions",
-                "function signatures",
-                "php",
-                "php automation",
-                "static analysis",
-                "type checking",
-                "utility",
-                "wrapper"
-            ],
-            "support": {
-                "issues": "https://github.com/douglasgreen/utility/issues",
-                "source": "https://github.com/douglasgreen/utility/tree/v0.5.1"
-            },
-            "time": "2024-08-04T21:19:35+00:00"
-        },
         {
             "name": "pdepend/pdepend",
             "version": "2.16.2",
@@ -1219,16 +1156,16 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v3.94.0",
+            "version": "v3.94.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer.git",
-                "reference": "883b20fb38c7866de9844ab6d0a205c423bde2d4"
+                "reference": "7787ceff91365ba7d623ec410b8f429cdebb4f63"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/883b20fb38c7866de9844ab6d0a205c423bde2d4",
-                "reference": "883b20fb38c7866de9844ab6d0a205c423bde2d4",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/7787ceff91365ba7d623ec410b8f429cdebb4f63",
+                "reference": "7787ceff91365ba7d623ec410b8f429cdebb4f63",
                 "shasum": ""
             },
             "require": {
@@ -1311,7 +1248,7 @@
             ],
             "support": {
                 "issues": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/issues",
-                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.94.0"
+                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.94.2"
             },
             "funding": [
                 {
@@ -1319,7 +1256,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-02-11T16:44:33+00:00"
+            "time": "2026-02-20T16:13:53+00:00"
         },
         {
             "name": "phpstan/phpstan",
@@ -2002,16 +1939,16 @@
         },
         {
             "name": "rector/rector",
-            "version": "2.3.6",
+            "version": "2.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "ca9ebb81d280cd362ea39474dabd42679e32ca6b"
+                "reference": "9c46ad17f57963932c9788fd1b0f1d07ff450370"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/ca9ebb81d280cd362ea39474dabd42679e32ca6b",
-                "reference": "ca9ebb81d280cd362ea39474dabd42679e32ca6b",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/9c46ad17f57963932c9788fd1b0f1d07ff450370",
+                "reference": "9c46ad17f57963932c9788fd1b0f1d07ff450370",
                 "shasum": ""
             },
             "require": {
@@ -2050,7 +1987,7 @@
             ],
             "support": {
                 "issues": "https://github.com/rectorphp/rector/issues",
-                "source": "https://github.com/rectorphp/rector/tree/2.3.6"
+                "source": "https://github.com/rectorphp/rector/tree/2.3.7"
             },
             "funding": [
                 {
@@ -2058,7 +1995,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-02-06T14:25:06+00:00"
+            "time": "2026-02-19T14:44:16+00:00"
         },
         {
             "name": "sebastian/diff",
