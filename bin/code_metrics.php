@@ -9,8 +9,6 @@ use DouglasGreen\CodeMetrics\MetricChecker;
 use DouglasGreen\CodeMetrics\MetricGenerator;
 use DouglasGreen\CodeMetrics\Repository;
 use DouglasGreen\CodeMetrics\XmlParser;
-use DouglasGreen\Utility\FileSystem\Path;
-use DouglasGreen\Utility\FileSystem\PathUtil;
 
 // Must be run in repository root directory.
 $currentDir = getcwd();
@@ -35,20 +33,17 @@ if (isset($options['g']) || isset($options['generate'])) {
 
 $ignoreList = new IgnoreList($currentDir);
 
-$currentPath = new Path($currentDir);
-
 $filesChecked = [];
 
 $summaryFile = $cache->getSummaryFile();
-$xmlPath = new Path($summaryFile);
-if (! $xmlPath->exists()) {
+if (!file_exists($summaryFile)) {
     die('=> Skipping metrics checks (PDepend summary XML file not found)' . PHP_EOL);
 }
 
-$summaryTimestamp = PathUtil::getWriteTime($summaryFile);
+$summaryTimestamp = filemtime($summaryFile);
 
 foreach ($phpFiles as $phpFile) {
-    if (PathUtil::getWriteTime($phpFile) > $summaryTimestamp) {
+    if (filemtime($phpFile) > $summaryTimestamp) {
         echo '=> You need to run generate-metrics to update the PDepend metrics with your recent code changes.' .
             PHP_EOL;
         break;
@@ -56,7 +51,7 @@ foreach ($phpFiles as $phpFile) {
 }
 
 try {
-    $parser = new XmlParser((string) $xmlPath);
+    $parser = new XmlParser($summaryFile);
     $packages = $parser->getPackages();
     if ($packages === null) {
         die('No packages found.' . PHP_EOL);
@@ -65,7 +60,7 @@ try {
     foreach ($packages as $package) {
         $classes = $package['classes'];
         foreach ($classes as $class) {
-            $filename = CacheManager::getOriginalFile($currentPath->removeBase($class['filename']));
+            $filename = CacheManager::getOriginalFile(str_replace($currentDir . DIRECTORY_SET_SEPARATOR, '', $class['filename']));
             if ($ignoreList->shouldIgnore($filename)) {
                 continue;
             }
@@ -114,7 +109,7 @@ try {
 
         foreach ($package['functions'] as $function) {
             $filename = CacheManager::getOriginalFile(
-                $currentPath->removeBase($function['filename']),
+                str_replace($currentDir . DIRECTORY_SEPARATOR, '', $function['filename']),
             );
             if ($ignoreList->shouldIgnore($filename)) {
                 continue;
@@ -136,7 +131,7 @@ try {
 
     // Check other files that don't contain classes or functions.
     foreach ($phpFiles as $phpFile) {
-        $filename = $currentPath->removeBase($phpFile);
+        $filename = str_replace($currentDir . DIRECTORY_SEPARATOR, '', $phpFile);
         if ($ignoreList->shouldIgnore($filename)) {
             continue;
         }
@@ -148,11 +143,11 @@ try {
             $filesChecked[$filename] = 0;
         }
 
-        if (! file_exists($filename)) {
+        if (! file_exists($phpFile)) {
             continue;
         }
 
-        $totalLoc = count(PathUtil::loadLines($phpFile));
+        $totalLoc = count(file($phpFile));
 
         // Other LOC is outside classes and functions
         $otherLoc = $totalLoc - $locChecked;
