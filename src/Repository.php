@@ -29,6 +29,7 @@ class Repository
                 "Failed to execute Git command. Make sure Git is installed and you're in a Git repository.",
             );
         }
+
         $this->files = $output;
 
         // Command to get the default branch
