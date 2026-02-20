@@ -114,7 +114,7 @@ try {
 
         foreach ($package['functions'] as $function) {
             $filename = CacheManager::getOriginalFile(
-                $currentPath->removeBase($function['filename'])
+                $currentPath->removeBase($function['filename']),
             );
             if ($ignoreList->shouldIgnore($filename)) {
                 continue;

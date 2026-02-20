@@ -9,9 +9,7 @@ namespace DouglasGreen\CodeMetrics;
  */
 trait IssueHolder
 {
-    /**
-     * @var array<string, bool>
-     */
+    /** @var array<string, bool> */
     protected array $issues = [];
 
     /**

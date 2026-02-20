@@ -9,24 +9,16 @@ namespace DouglasGreen\CodeMetrics;
  */
 class MetricChecker
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     public const STATUS_OK = 0;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     public const STATUS_WARN = 1;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     public const STATUS_ERROR = 2;
 
-    /**
-     * @var array<int, list<string>>
-     */
+    /** @var array<int, list<string>> */
     protected array $issues = [];
 
     protected ?string $currentFile = null;

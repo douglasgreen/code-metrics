@@ -12,16 +12,14 @@ use SimpleXMLElement;
  */
 class XmlParser
 {
-    /**
-     * @var array<string, mixed>
-     */
+    /** @var array<string, mixed> */
     protected readonly array $data;
 
     /**
      * @throws FileException
      */
     public function __construct(
-        protected readonly string $xmlFile
+        protected readonly string $xmlFile,
     ) {
         $xml = simplexml_load_file($this->xmlFile);
         if ($xml === false) {

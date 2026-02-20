@@ -21,6 +21,26 @@ class CacheManager
 
     protected readonly string $summaryFile;
 
+    public function __construct(
+        protected readonly string $currentDir,
+    ) {
+        $this->cacheDir = PathUtil::addSubpath($currentDir, self::CACHE_DIR);
+        $this->fileCacheDir = PathUtil::addSubpath($currentDir, self::FILE_CACHE_DIR);
+        $this->summaryFile = PathUtil::addSubpath($currentDir, self::SUMMARY_FILE);
+
+        // Ensure the cache directory exists
+        if (! is_dir($this->cacheDir)) {
+            DirUtil::makeRecursive($this->cacheDir);
+        }
+
+        // Ensure the file cache directory exists and is clear.
+        if (is_dir($this->fileCacheDir)) {
+            DirUtil::removeContents($this->fileCacheDir);
+        } else {
+            DirUtil::make($this->fileCacheDir);
+        }
+    }
+
     /**
      * Get the original name of the file from its cache name.
      */
@@ -41,26 +61,6 @@ class CacheManager
 
         // Return the original cache file if it does not start with the cache directory path
         return $cacheFile;
-    }
-
-    public function __construct(
-        protected readonly string $currentDir
-    ) {
-        $this->cacheDir = PathUtil::addSubpath($currentDir, self::CACHE_DIR);
-        $this->fileCacheDir = PathUtil::addSubpath($currentDir, self::FILE_CACHE_DIR);
-        $this->summaryFile = PathUtil::addSubpath($currentDir, self::SUMMARY_FILE);
-
-        // Ensure the cache directory exists
-        if (! is_dir($this->cacheDir)) {
-            DirUtil::makeRecursive($this->cacheDir);
-        }
-
-        // Ensure the file cache directory exists and is clear.
-        if (is_dir($this->fileCacheDir)) {
-            DirUtil::removeContents($this->fileCacheDir);
-        } else {
-            DirUtil::make($this->fileCacheDir);
-        }
     }
 
     /**

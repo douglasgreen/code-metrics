@@ -11,9 +11,7 @@ class IgnoreList
 {
     public const IGNORE_FILE = '.phplintignore';
 
-    /**
-     * @var list<string>
-     */
+    /** @var list<string> */
     protected readonly array $ignorePatterns;
 
     public function __construct(string $currentDir)

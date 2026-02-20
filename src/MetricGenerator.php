@@ -11,7 +11,7 @@ class MetricGenerator
      */
     public function __construct(
         protected readonly CacheManager $cacheManager,
-        protected readonly array $phpFiles
+        protected readonly array $phpFiles,
     ) {}
 
     public function generate(): void
